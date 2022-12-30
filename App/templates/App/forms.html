@@ -1,28 +1,114 @@
 {% extends 'App/base.html' %}
 
 {% block content %}
+
+
+<div class="form">
+  <button href = "" id="isIdiotis" >Are you an individual?</button>
+  <button href = "" id="isCompany" >Are you a Company?</button>
+  
+  <form method="post" id="companyForm">
+    
+    {% csrf_token %}    
+    {% for field in form_user_company %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="button">Add User</button>
+  </form>
+  
+  <form method="post" id="idiotisForm">
+    
+    {% csrf_token %}    
+    {% for field in form_user_idiotis %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="button">Add User</button>
+  </form>
+</div>
+
+
   <form method="post" class="form">
     {% csrf_token %}
-    <table>{{ form_user.as_table }}</table>
-    <button type="submit">Add User</button>
+    
+    {% for field in form_aggelia %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+   
+    <button type="submit" class="button">Add Aggelia</button>
+  </form>
+
+  
+
+  <form method="post" class="form">
+    {% csrf_token %}
+    {% for field in form_message %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="button">Send Message</button>
   </form>
 
   <form method="post" class="form">
     {% csrf_token %}
-    <table>{{ form_aggelia.as_table }}</table>
-    <button type="submit">Add Aggelia</button>
+    {% for field in form_query %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="button">Send Query</button>
   </form>
 
-  <form method="post" class="form">
-    {% csrf_token %}
-    <table>{{ form_message.as_table }}</table>
-    <button type="submit">Send Message</button>
-  </form>
+  {% if query != '' %}
+<div class="query-results-table">
+    <p>Query: {{query}}</p>
+    
+    <h2>Query Results</h2>
+    
+    {% for field in query_results %}
+    <div class="query-results-group">
+      {{ field }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  
 
-  <form method="post" class="form">
-    {% csrf_token %}
-    <table>{{ form_query.as_table }}</table>
-    <button type="submit">Send Query</button>
-  </form>
 
+  
+<script type="text/javascript">
+
+  const b1 = document.getElementById("isCompany");
+  const b2 = document.getElementById("isIdiotis");
+  b1.addEventListener('click',showCompanyForm);
+  b2.addEventListener('click',showIdiotisForm);
+
+  function showCompanyForm(){
+    document.getElementById('idiotisForm').style.display = 'none';
+    document.getElementById('companyForm').style.display = 'block';
+    b1.style.display = 'none';
+    b2.style.display = 'block';
+  };
+
+  function showIdiotisForm(){
+    document.getElementById('idiotisForm').style.display = 'block';
+    document.getElementById('companyForm').style.display = 'none';
+    b1.style.display = 'block';
+    b2.style.display = 'none';
+  };
+
+  showIdiotisForm()
+
+  </script>
+    
 {% endblock %}
