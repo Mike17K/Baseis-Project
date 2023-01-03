@@ -1,11 +1,10 @@
 from asyncio.windows_events import NULL
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .forms import CreateNewUserIdiotis,CreateNewUserCompany,CreateNewMessage,CreateNewAggelia,CreateNewQuery
 from .databace_functions import *
 import sqlite3
 
-import time
 from datetime import datetime
 
 # Create your views here.
@@ -141,3 +140,6 @@ def index(request):
         
     return render(request,"App/forms.html",{"form_user_company":form_user_company,"form_user_idiotis":form_user_idiotis,"form_aggelia":form_aggelia,"form_message":form_message,"form_query":form_query,"query_results":query_results,"query":query})
 
+def refreshDatabace(request):
+    refresh('test_databace.db')
+    return redirect('/')

@@ -11,6 +11,8 @@
       --height_input: 30px;
       --width-label: 250px;
       --height-label: 30px;
+
+      margin: 20px;
     }
 
     .form{
@@ -20,10 +22,15 @@
       border-radius: 50px;
     }
 
-    button{
+    button,
+    .button{
       background-color: white;
       border-radius: 5px;
       border: 1px solid black;
+    }
+
+    button:hover{
+      background-color: rgb(240, 240, 140);
     }
 
     #isCompany
@@ -77,6 +84,10 @@
       margin-bottom: 2px;
     }
 
+    .refresh-button:hover{
+      background-color: rgb(240, 240, 140);
+    }
+
   </style>
 
 </head>
@@ -84,6 +95,7 @@
   
 
   <div class="container">
+
     {% block content %}
     
     {% endblock %}

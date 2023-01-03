@@ -77,7 +77,7 @@ def insert_aposteli(conn,αποστολεας,παραληπτης,μηνυμα)
         return -1
     return 0
 
-def insert_perioxh(ΤΚ,πολη,γεωγραφικες_συντεταγμενες,νομός,χώρα):
+def insert_perioxh(conn,ΤΚ,πολη,γεωγραφικες_συντεταγμενες,νομός,χώρα):
     try:
         cur =conn.cursor()
         cur.execute(f""" INSERT INTO περιοχη (ΤΚ,πολη,γεωγραφικες_συντεταγμενες,νομός,χώρα) VALUES 
@@ -88,7 +88,7 @@ def insert_perioxh(ΤΚ,πολη,γεωγραφικες_συντεταγμενε
         return -1
     return 0
 
-def insert_vehicles(πορτες,καθισματα,χρώμα,αερόσακοι,κυβικά,ιπποι,μεγεθος,κινηση,καύσιμα,χρονολογία,σαζμαν,πινακιδα,χιλιομετρα,κατηγορία,μαρκα,κατασταση):
+def insert_vehicles(conn,πορτες,καθισματα,χρώμα,αερόσακοι,κυβικά,ιπποι,μεγεθος,κινηση,καύσιμα,χρονολογία,σαζμαν,πινακιδα,χιλιομετρα,κατηγορία,μαρκα,κατασταση):
     try:
         cur =conn.cursor()
         cur.execute(f""" INSERT INTO οχημα (πορτες,καθισματα,χρώμα,αερόσακοι,κυβικά,ιπποι,μεγεθος,κινηση,καύσιμα,χρονολογία,σαζμαν,πινακιδα,χιλιομετρα,κατηγορία,μαρκα,κατασταση) VALUES 
@@ -99,7 +99,7 @@ def insert_vehicles(πορτες,καθισματα,χρώμα,αερόσακο�
         return -1
     return 0
 
-def update_vehicles():
+def update_vehicles(conn):
     colorlist=['κοκκινο','κιτρινο','μαυρο','μπλε','ασημι']
     category=['αυτοκινητο','μηχανακι','βαν','φορτηγο']
     brands=['audi','mazda','mercedes','bmw','fiat','opel','toyota','tesla']
@@ -108,12 +108,12 @@ def update_vehicles():
     for j in range(0,80):
         pinakida.append(random.choice(letters)+random.choice(letters)+random.choice(letters)+'-'+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+str(random.randrange(0,9,1)))
     for i in range(0,20):
-            insert_vehicles(random.choice([2, 4, 8]),random.choice([2, 4, 6, 8]),random.choice(colorlist),random.choice([2, 4]),random.choice([1000, 1200, 1400, 1600,2000,2200]),
+            insert_vehicles(conn,random.choice([2, 4, 8]),random.choice([2, 4, 6, 8]),random.choice(colorlist),random.choice([2, 4]),random.choice([1000, 1200, 1400, 1600,2000,2200]),
             random.choice([3000, 4000, 5000, 5500]),random.choice([20.2, 14.4, 21.6, 27.8]),random.choice(['χειροκίνητο','αυτόματο']),
             random.choice(['βενζίνη','πετρέλαιο','ηλεκτρικό','αέριο']),random.randrange(1980,2022,1),random.choice(['μηχανικό','αυτόματο']),
             random.choice(pinakida),random.randrange(0,100000,1000),random.choice(category),random.choice(brands),random.choice(['καινουργιο','μεταχειρισμένο']))
 
-def update_areas():
+def update_areas(conn):
     #Regions=['Στερεα Ελλάδα',"Πελοπόννησος",'Ηπειρος','Κρητη','Θρακη','Δυτική Ελλάδα','Επτάνησα']
     Pre=['Αττικής','Αχαιας','Ιωαννινων','Χανίων','Ξάνθης','Αιτωλοακαρνανίας','Αργοστολίου']
     City=['Αθηνα','Πάτρα','Ιωάννινα','Χανιά','Ξάνθη','Αγρίνιο','Κεφαλονιά']
@@ -124,7 +124,7 @@ def update_areas():
     for i in range(0,7):
         Coord.append(str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+'N  '+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+str(random.randrange(0,9,1))+'W')
     for j in range (0,7):
-        insert_perioxh(TK[j],City[j],Coord[j],Pre[j],'Ελλάδα')
+        insert_perioxh(conn,TK[j],City[j],Coord[j],Pre[j],'Ελλάδα')
 
 def refresh(filename):
     con =sqlite3.connect(filename)
@@ -256,12 +256,13 @@ CREATE TABLE αποστελει (
     temp=a.split(";")
     for i in temp: 
         cur.execute(i)
+
+    update_vehicles(con)
+    update_areas(con)
+    
     con.close()
 
 if __name__ == "__main__":
     
     refresh('test_databace.db')
     conn =sqlite3.connect('test_databace.db')
-
-    update_vehicles()
-    update_areas()
