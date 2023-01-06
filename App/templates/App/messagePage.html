@@ -1,0 +1,20 @@
+{% extends 'App/base.html' %}
+
+{% block content %}
+
+<a href="/userPage/{{ user.1 }}"><= User Page</a>
+
+<form method="post" class="form">
+    <h1>Message Form</h1>
+
+    {% csrf_token %}
+    {% for field in form_message %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="button">Send Message</button>
+  </form>
+
+{% endblock %}

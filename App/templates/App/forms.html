@@ -1,10 +1,14 @@
 {% extends 'App/base.html' %}
 
 {% block content %}
+<a href="/"><= Home</a>
+<a href="/userLogin"><= Log in</a>
+<br>
 
 <a href="/refresh" class="refresh-button button">Refrsh Databace</a>
 
 <div class="form">
+  <h1>User Form</h1>
   <button href = "" id="isIdiotis" >Are you an individual?</button>
   <button href = "" id="isCompany" >Are you a Company?</button>
   
@@ -21,7 +25,6 @@
   </form>
   
   <form method="post" id="idiotisForm">
-    
     {% csrf_token %}    
     {% for field in form_user_idiotis %}
     <div class="form-group">
@@ -35,6 +38,7 @@
 
 
   <form method="post" class="form">
+    <h1>Aggelia Form</h1>
     {% csrf_token %}
     
     {% for field in form_aggelia %}
@@ -49,6 +53,8 @@
   
 
   <form method="post" class="form">
+    <h1>Message Form</h1>
+
     {% csrf_token %}
     {% for field in form_message %}
     <div class="form-group">

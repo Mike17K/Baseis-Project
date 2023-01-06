@@ -1,0 +1,64 @@
+{% extends 'App/base.html' %}
+
+{% block content %}
+
+
+<a href="/"><= Home</a>
+<a href="/userLogin"><= Log in</a>
+
+<div class="form">
+  <h1>User SignUp</h1>
+  <button href = "" id="isIdiotis" >Are you an individual?</button>
+  <button href = "" id="isCompany" >Are you a Company?</button>
+  
+  <form method="post" id="companyForm">
+    
+    {% csrf_token %}    
+    {% for field in form_user_company %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="button">Submit</button>
+  </form>
+  
+  <form method="post" id="idiotisForm">
+    {% csrf_token %}    
+    {% for field in form_user_idiotis %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="button">Submit</button>
+  </form>
+</div>
+
+
+  
+<script type="text/javascript">
+
+    const b1 = document.getElementById("isCompany");
+    const b2 = document.getElementById("isIdiotis");
+    b1.addEventListener('click',showCompanyForm);
+    b2.addEventListener('click',showIdiotisForm);
+  
+    function showCompanyForm(){
+      document.getElementById('idiotisForm').style.display = 'none';
+      document.getElementById('companyForm').style.display = 'block';
+      b1.style.display = 'none';
+      b2.style.display = 'block';
+    };
+  
+    function showIdiotisForm(){
+      document.getElementById('idiotisForm').style.display = 'block';
+      document.getElementById('companyForm').style.display = 'none';
+      b1.style.display = 'block';
+      b2.style.display = 'none';
+    };
+  
+    showIdiotisForm()
+  
+    </script>
+{% endblock %}

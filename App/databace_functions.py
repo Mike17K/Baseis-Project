@@ -149,7 +149,7 @@ def refresh(filename):
     
     a="""
     
-    CREATE TABLE χρηστης (
+CREATE TABLE χρηστης (
     id integer PRIMARY KEY AUTOINCREMENT,
     διευθυσνη string,
     ΑΦΜ integer,

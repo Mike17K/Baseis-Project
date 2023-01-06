@@ -1,0 +1,23 @@
+{% extends 'App/base.html' %}
+
+{% block content %}
+
+<a href="/"><= Home</a>
+<a href="/userRegister"><= Register</a>
+
+<form method="post" class="form">
+    <h1>User Log In</h1>
+    
+    {% csrf_token %}
+    
+    {% for field in loginForm %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+   
+    <button type="submit" class="button">Log In</button>
+  </form>
+
+
+{% endblock %}

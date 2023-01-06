@@ -35,7 +35,7 @@ class CreateNewAggelia(forms.Form):
     description = forms.CharField(label="Description",max_length=600)
     location = forms.ChoiceField(choices =[]) # edw locations 
     vehicle = forms.ChoiceField(choices =[]) # edw oximata 
-    writer = forms.ChoiceField(choices=[]) 
+    writer = forms.ChoiceField(choices=[])
     payment_method = forms.ChoiceField(choices =(("Debit Card","Debit"),("Τραπεζική Κατάθεση","Τράπεζα"),("Credit Card","Credit"))
 ) # edw user
 
@@ -77,3 +77,6 @@ class CreateNewMessage(forms.Form):
 
 class CreateNewQuery(forms.Form):
     my_query = forms.CharField(label="Query",max_length=500,required=False)
+
+class UserLoginForm(forms.Form):
+    AFM = forms.IntegerField(label="AFM")

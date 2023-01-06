@@ -1,0 +1,45 @@
+{% extends 'App/base.html' %}
+
+{% block content %}
+
+<a href="/"><= Log Out</a>
+<br>
+<h2>User AFM: {{AFM}} Email: {{email}}</h2>
+
+  <form method="post" class="form">
+    <h1>Create Aggelia</h1>
+    {% csrf_token %}
+    
+    {% for field in form_aggelia %}
+    <div class="form-group">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+   
+    <button type="submit" class="button">Add Aggelia</button>
+  </form>
+
+  <h2>Aggelies</h2>
+
+  <div class="form">
+
+  {% for field in aggelies.0 %}
+  {{ field.0 }}
+  {% endfor %}
+  <br>
+  {% for aggelia in aggelies %}
+  <div class="aggelia">
+    <div class="aggelia-data">
+      {% for field in aggelia %}    
+      {{ field.1 }} 
+      {% endfor %}    
+    </div>
+    <a class="aggelia-button" href="/message/{{ aggelia.0.1 }}/{{ uid }}">contact</a>
+  </div>
+  
+    
+    {% endfor %}
+  </div>
+  
+
+{% endblock %}
