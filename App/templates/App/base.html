@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,30 +7,97 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   
   <style>
+    *{
+      margin:0;
+    }
+
     body{
       --width_input: 280px;
       --height_input: 30px;
       --width-label: 250px;
       --height-label: 30px;
 
-      margin: 20px;
+      
+      background-color: rgb(43, 43, 34);
+
+      margin:0;
+      margin-top: 20px;
+
+    }
+
+    footer{
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      background-color: rgb(43, 43, 34);
+      padding: 30px;
+    }
+
+    .bg{
+      position: fixed;
+      top:0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+      background-image: url("/static/background.jpg");
+      background-size: 100% auto;
+      
+      background-repeat: no-repeat;
+    }
+    
+    .photo-container{
+      width: 50%;
+      height: 52vh;
+    }
+
+    .car-0{
+      height: 50%;
+      width: 100%;
+      background-image: url("/static/left-car.jpg");
+      background-size: 100% auto;
+      background-repeat: no-repeat;  
+    }
+    .car-1{
+      display: inline-block;
+      margin: 30px 30px 0 0 ;
+      height: 15vh;
+      width: calc(50% - 18px) ;
+      background-image: url("/static/middle-car2.jpg");
+      background-size: 100% auto;
+      background-repeat: no-repeat;  
+    }
+    .car-2{
+      display: inline-block;
+      margin: 30px 0 0 0 ;
+      height: 15vh;
+      width: calc(50% - 18px) ;
+      background-image: url("/static/rigth-car.jpg");
+      background-size: 100% auto;
+      background-repeat: no-repeat;  
+    }
+    
+    p{
+      color:rgb(189, 236, 236);
     }
 
     h1{
-      border-bottom: 5px solid black;
+      color: white;
+      border-bottom: 5px solid white;
       padding-bottom: 5px;
       margin-bottom: 35px;
     }
 
+    h2{
+      color: white;
+    }
+
     .aggelia{
       width: 100%;
-      background-color: rgba(148, 132, 81, 0.5);
+      background-color: rgb(209, 192, 135,0.8);
       margin: 5px;
       border: 1px solid black;
       padding:5px;
     }
-
-
 
     .aggelia-data{
       display:inline-block;      
@@ -50,17 +118,19 @@
 
 
     .button-home{
+      float: right;
       display: inline-block;
-      padding: 20px 50px;
+      padding: 10px 20px;
+      margin: 0px 10px;
       background-color: antiquewhite;
       border-radius: 10px;
     }
 
     .form{
-      background-color: #e6cb90;
+      background-color: #d3b3f3ce;
       margin: 20px;
       padding: 50px;
-      border-radius: 50px;
+      border-radius: 20px;
     }
 
     button,
@@ -115,7 +185,7 @@
     }
 
     .query-results-table{
-      background-color: rgb(189, 236, 236);
+      background-color: rgba(88, 233, 190, 0.549);
       margin: 20px;
       padding: 50px;
     }
@@ -133,7 +203,8 @@
 
 </head>
 <body>
-  
+  <title>Car Sales Company</title>
+  <div class="bg"></div>
 
   <div class="container">
 

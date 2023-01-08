@@ -135,12 +135,9 @@ def refresh(filename):
     DROP TABLE μηνυμα;
     DROP TABLE ανηκει;
     DROP TABLE οχημα;
-    DROP TABLE περιοχη;
     DROP TABLE αποστελει;
     DROP TABLE επιχειρηση;
     DROP TABLE idiotis;
-    DROP TABLE φωτογραφία;
-    DROP TABLE περιεχει;
     
     """
     t=b.split(";")
@@ -205,11 +202,6 @@ CREATE TABLE οχημα (
     κατασταση string
 );
 
-CREATE TABLE φωτογραφία (
-    id integer PRIMARY KEY AUTOINCREMENT,
-    blob file blob,
-    url string
-);
 
 CREATE TABLE idiotis (
     id integer ,
@@ -231,18 +223,6 @@ CREATE TABLE μηνυμα (
     κατασταση string,
     κειμενο text,
     αφορα integer
-);
-
-CREATE TABLE ανηκει (
-    id integer PRIMARY KEY AUTOINCREMENT,
-    αγγελια id integer,
-    φωτο id integer
-);
-
-CREATE TABLE περιεχει (
-    id integer PRIMARY KEY AUTOINCREMENT,
-    φωτο id integer,
-    μηνυμα id integer
 );
 
 CREATE TABLE αποστελει (
