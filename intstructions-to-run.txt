@@ -1,0 +1,7 @@
+1. Download the files in zip format
+2. Extract the zip files to a folder
+3. Find the folder containing the “REQUIREMENTS.txt” file
+4. Open the folder in the command line
+5. Run the command “pip install django”, “pip install Django-crispy-forms” and “pip install sqlite3”
+6. Execute the command “python manage.py runserver” through the commandline terminal
+7. After successful execution of the command, a link is created which we paste into the browser and run through it
