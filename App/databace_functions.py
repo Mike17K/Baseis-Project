@@ -126,24 +126,32 @@ def update_areas(conn):
     for j in range (0,7):
         insert_perioxh(conn,TK[j],City[j],Coord[j],Pre[j],'Ελλάδα')
 
-def refresh(filename):
-    con =sqlite3.connect(filename)
-    cur =con.cursor()
-    b="""
-    DROP TABLE χρηστης;
-    DROP TABLE αγγελία;
-    DROP TABLE μηνυμα;
-    DROP TABLE ανηκει;
-    DROP TABLE οχημα;
-    DROP TABLE αποστελει;
-    DROP TABLE επιχειρηση;
-    DROP TABLE idiotis;
-    
-    """
-    t=b.split(";")
-    for i in t: 
-        cur.execute(i)
-    
+def refresh(filename,create=False):
+    if not create:
+        con =sqlite3.connect(filename)
+        cur =con.cursor()
+        b="""
+        DROP TABLE χρηστης;
+        DROP TABLE αγγελία;
+        DROP TABLE μηνυμα;
+        DROP TABLE οχημα;
+        DROP TABLE αποστελει;
+        DROP TABLE επιχειρηση;
+        DROP TABLE idiotis;
+        DROP TABLE περιοχη;
+        
+        """
+        t=b.split(";")
+        for i in t: 
+            cur.execute(i)
+    else:
+        # Open a file in write mode
+        file = open(filename, 'w')
+        file.close()
+
+        con =sqlite3.connect(filename)
+        cur =con.cursor()
+
     a="""
     
 CREATE TABLE χρηστης (
@@ -244,5 +252,5 @@ CREATE TABLE αποστελει (
 
 if __name__ == "__main__":
     
-    refresh('test_databace.db')
+    refresh('test_databace.db',create=True)
     conn =sqlite3.connect('test_databace.db')

@@ -36,8 +36,7 @@ class CreateNewAggelia(forms.Form):
     location = forms.ChoiceField(choices =[]) # edw locations 
     vehicle = forms.ChoiceField(choices =[]) # edw oximata 
     writer = forms.ChoiceField(choices=[])
-    payment_method = forms.ChoiceField(choices =(("Debit Card","Debit"),("Τραπεζική Κατάθεση","Τράπεζα"),("Credit Card","Credit"))
-) # edw user
+    payment_method = forms.ChoiceField(choices =(("Debit Card","Debit"),("Τραπεζική Κατάθεση","Τράπεζα"),("Credit Card","Credit"))) # edw user
 
     class Meta:
         fields = ['zitisi_polisi','timi','vehicle_type','titlos','description',
