@@ -7,12 +7,12 @@ from django import forms
 conn =sqlite3.connect('test_databace.db')
 
 
-def insert_xristis(conn,διευθυσνη,ΑΦΜ,email,ημερομηνια,τηλ,φωτογραφια):
+def insert_xristis(conn,διευθυσνη,ΑΦΜ,email,ημερομηνια,τηλ):
     try:
         cur =conn.cursor()
 
-        cur.execute(f""" INSERT INTO χρηστης (διευθυσνη,ΑΦΜ,email,ημερομηνια,τηλ,φωτογραφια) VALUES 
-                ('{διευθυσνη}',{ΑΦΜ},'{email}','{ημερομηνια}',{τηλ},{φωτογραφια});""")
+        cur.execute(f""" INSERT INTO χρηστης (διευθυσνη,ΑΦΜ,email,ημερομηνια,τηλ) VALUES 
+                ('{διευθυσνη}',{ΑΦΜ},'{email}','{ημερομηνια}',{τηλ});""")
         conn.commit()
     except :
         return -1
@@ -69,7 +69,7 @@ def insert_minima(conn,συντακτης,ημερομηνια,καταστασ�
 def insert_aposteli(conn,αποστολεας,παραληπτης,μηνυμα):
     try:
         cur =conn.cursor()
-        cur.execute(f""" INSERT INTO αποστελει (αποστολεας,παραληπτης,μηνυμα) VALUES 
+        cur.execute(f""" INSERT INTO αποστελει (αποστολεας_id,παραληπτης_id,μηνυμα_id) VALUES 
                 ({αποστολεας},{παραληπτης},{μηνυμα});""")
         conn.commit()
     except AttributeError as e:

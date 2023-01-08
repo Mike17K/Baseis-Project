@@ -57,7 +57,7 @@ def userRegister(request):
                 now = datetime.now()
                 date_time_str = now.strftime("%Y-%m-%d %H:%M:%S")
                 
-                insert_xristis(conn,request.POST['address'],request.POST['AFM'],request.POST['email'],date_time_str,request.POST['phone'],"0")
+                insert_xristis(conn,request.POST['address'],request.POST['AFM'],request.POST['email'],date_time_str,request.POST['phone'])
                 # find xristis id
                 cursor.execute(f"SELECT DISTINCT id FROM χρηστης where ΑΦΜ={request.POST['AFM']};") #  join idiotis on χρηστης.id=idiotis.id') # θελω και τις επιχειρησεις εδω 
                 uid = int(cursor.fetchall()[0][0])
@@ -258,10 +258,11 @@ def adminPage(request):
                 now = datetime.now()
                 date_time_str = now.strftime("%Y-%m-%d %H:%M:%S")
                 
-                insert_xristis(conn,request.POST['address'],request.POST['AFM'],request.POST['email'],date_time_str,request.POST['phone'],"0")
+                insert_xristis(conn,request.POST['address'],request.POST['AFM'],request.POST['email'],date_time_str,request.POST['phone'])
                 # find xristis id
                 cursor.execute(f"SELECT DISTINCT id FROM χρηστης where ΑΦΜ={request.POST['AFM']};") #  join idiotis on χρηστης.id=idiotis.id') # θελω και τις επιχειρησεις εδω 
-                uid = int(cursor.fetchall()[0][0])
+                res = cursor.fetchall()
+                uid = int(res[0][0])
                 if 'firstname' in request.POST.keys():
                     insert_idiotis(conn,uid,request.POST['firstname'],request.POST['lastname'])
                 elif 'company_name' in request.POST.keys():
@@ -274,7 +275,7 @@ def adminPage(request):
             # check if the for valid
             isvalid = True
             
-            cursor.execute(f"SELECT id FROM αγγελία where τιτλος={request.POST['titlos']};") 
+            cursor.execute(f"SELECT id FROM αγγελία where τιτλος='{request.POST['titlos']}';") 
             isvalid = isvalid and len(cursor.fetchall()) == 0
             if not isvalid: print("Error titlos already exists") # show to screen the message
             
