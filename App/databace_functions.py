@@ -133,7 +133,7 @@ def refresh(filename,create=False):
         b="""
         DROP TABLE χρηστης;
         DROP TABLE αγγελία;
-        DROP TABLE μηνυμα;
+        DROP TABLE μηνυμα; 
         DROP TABLE οχημα;
         DROP TABLE αποστελει;
         DROP TABLE επιχειρηση;
@@ -160,8 +160,7 @@ CREATE TABLE χρηστης (
     ΑΦΜ integer,
     email string,
     ημερομηνια εγγραφης date,
-    τηλ integer,
-    φωτογραφια integer
+    τηλ integer
 );
 
 CREATE TABLE αγγελία (
@@ -235,9 +234,9 @@ CREATE TABLE μηνυμα (
 
 CREATE TABLE αποστελει (
     id integer PRIMARY KEY AUTOINCREMENT,
-    αποστολεας id integer,
-    παραληπτης id integer,
-    μηνυμα id integer
+    αποστολεας_id integer,
+    παραληπτης_id integer,
+    μηνυμα_id integer
 );
 
     """
